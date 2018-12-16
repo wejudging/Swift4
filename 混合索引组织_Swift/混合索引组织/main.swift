@@ -8,11 +8,11 @@
 
 import Foundation
 //定义除去盘号盘块的大小，单位为B
-let BLOCK_SIZE:Int = 14
+let BLOCK_SIZE:Int = 16
 //定义一个索引块中可以存放多少盘块
 let MAX_NUMBER_IN_BLOCK:Int = 8
 //定义盘块号的最大值
-let MAX_BLOCK_NUMBER:Int = 600
+let MAX_BLOCK_NUMBER:Int = 1000
 
 //定义一次间址的索引块、二次和三次间址的最后一层索引快
 struct Index_block_three
@@ -195,6 +195,7 @@ func findBlock(  addrss1: Int , indexfile:Index_File) -> Int {
     if block_num <= 10
     {
         ans = indexfile.addr[block_num - 1]
+        print("在直接盘块号的第\(block_num)个")
     }
     //一次间址
     else if block_num <= MAX_NUMBER_IN_BLOCK + 10
@@ -204,6 +205,8 @@ func findBlock(  addrss1: Int , indexfile:Index_File) -> Int {
         let index = block_num - 1;
         //查找盘块
         ans = indexfile.addr10!.blocks[index]
+        
+        print("在一次间址盘块号的第\(block_num)个")
     }
     //二次间址
     else if block_num <= MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK + MAX_NUMBER_IN_BLOCK + 10
@@ -215,6 +218,8 @@ func findBlock(  addrss1: Int , indexfile:Index_File) -> Int {
         let index = block_num - ((index_three - 1) * MAX_NUMBER_IN_BLOCK)
         //查找盘块
         ans = indexfile.addr11!.blocks[index_three - 1].blocks[index - 1]
+      //  print((block_num-1)/MAX_NUMBER_IN_BLOCK + 1)
+        print("在二次间址盘块号的第\((block_num-1)/MAX_NUMBER_IN_BLOCK + 1)个的一次间址盘块号的的第\((block_num-1)%MAX_NUMBER_IN_BLOCK+1)个")
     }
     //三次间址
     else if block_num <= MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK + MAX_NUMBER_IN_BLOCK * (MAX_NUMBER_IN_BLOCK + 1) + 10
@@ -230,6 +235,8 @@ func findBlock(  addrss1: Int , indexfile:Index_File) -> Int {
         let index = block_num - (index_three - 1) * MAX_NUMBER_IN_BLOCK
         //查找盘块
         ans = indexfile.addr12!.blocks[index_two - 1].blocks[index_three - 1].blocks[index - 1]
+        
+        print("在三次间址盘块号的第\((block_num-1)/(MAX_NUMBER_IN_BLOCK*MAX_NUMBER_IN_BLOCK) + 1)个的二次间址盘块号的的第\((block_num-1)/MAX_NUMBER_IN_BLOCK+1)个的一次间址盘块号的的第\((block_num-1)%MAX_NUMBER_IN_BLOCK+1)个")
     }
     return ans
 }
@@ -237,6 +244,7 @@ func findBlock(  addrss1: Int , indexfile:Index_File) -> Int {
 
 
 var x = 1 ,y = 1
+print("最大文件大小")
 print((MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK + MAX_NUMBER_IN_BLOCK * (MAX_NUMBER_IN_BLOCK + 1) + 10)*BLOCK_SIZE)
 while x == 1 {
 var n:Int=0,m:Int
@@ -246,6 +254,7 @@ if m <= (MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK + MAX_N
 let file = indexFile(filesize: m)
     
 while y==1 {
+    
 print("输入地址")
 n =  Int(readLine()!) ?? 0
     if  n > m{
@@ -259,6 +268,7 @@ print("\(n) 所在的盘块号为 \(findBlock(addrss1: n, indexfile: file))")
    
 print("是否继续，继续任意输入，结束输入0")
 x =  Int(readLine()!) ?? 1
+y = 1
     }
 else {print("输入的文件太大或者输入错误，请重新输入！")}
 }
