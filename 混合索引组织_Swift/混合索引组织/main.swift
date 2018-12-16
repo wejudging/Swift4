@@ -12,7 +12,7 @@ let BLOCK_SIZE:Int = 14
 //定义一个索引块中可以存放多少盘块
 let MAX_NUMBER_IN_BLOCK:Int = 8
 //定义盘块号的最大值
-let MAX_BLOCK_NUMBER:Int = 99
+let MAX_BLOCK_NUMBER:Int = 600
 
 //定义一次间址的索引块、二次和三次间址的最后一层索引快
 struct Index_block_three
@@ -234,7 +234,10 @@ func findBlock(  addrss1: Int , indexfile:Index_File) -> Int {
     return ans
 }
 
+
+
 var x = 1 ,y = 1
+print((MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK * MAX_NUMBER_IN_BLOCK + MAX_NUMBER_IN_BLOCK * (MAX_NUMBER_IN_BLOCK + 1) + 10)*BLOCK_SIZE)
 while x == 1 {
 var n:Int=0,m:Int
 print("输入文件大小：")
