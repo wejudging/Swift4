@@ -151,6 +151,7 @@ repeat{
     i += 1
 }
 while(lnumber != -1)
+
 page_length=i-1//因为多输入了一个-1
 print("输入主存块号，主存块数要小于\(i-1)(以－1结束）")
 pnumber =  Int(readLine()!) ?? 0

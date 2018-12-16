@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E8F20A2521C690E000FEF5EC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F20A2421C690E000FEF5EC /* main.swift */; };
+		E8F20A2C21C6AC0700FEF5EC /* FastTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F20A2B21C6AC0700FEF5EC /* FastTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		E8F20A2121C690E000FEF5EC /* 地址变换—swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "地址变换—swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F20A2421C690E000FEF5EC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E8F20A2B21C6AC0700FEF5EC /* FastTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				E8F20A2421C690E000FEF5EC /* main.swift */,
+				E8F20A2B21C6AC0700FEF5EC /* FastTable.swift */,
 			);
 			path = "地址变换—swift";
 			sourceTree = "<group>";
@@ -119,6 +122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F20A2C21C6AC0700FEF5EC /* FastTable.swift in Sources */,
 				E8F20A2521C690E000FEF5EC /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
