@@ -98,6 +98,7 @@ class LURCache {
     }
     
     //真正建立联系的是node[...],firstnode,lastnode只是辅助
+    //前四个if仅是为了在插入已满又想插入相同的keym，key的三种位置（2，3为同一中key在中间的那种情况）
     private func move2Head(node: CacheNode!){
         
         if let n = node {
