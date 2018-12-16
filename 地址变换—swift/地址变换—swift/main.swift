@@ -70,7 +70,7 @@ func Switch(laddress:Int) -> Int {
         pnumber = (PageBlock.end?.pointee)!
         paddress=pnumber<<10|address
         // print("逻辑地址是:\(laddress),对应物理地址是:\(paddress )")
-        //fast.put(key: String(lnumber!), anyO: pnumber!)
+        fast.put(key: String(lnumber), anyO: pnumber)
         return paddress
     }
     else{

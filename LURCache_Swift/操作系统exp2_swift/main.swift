@@ -38,7 +38,10 @@ class LURCache {
     }
     
     func put(key: String , anyO: Any){
+        //tmpNode为CacheNode类型
+        //将key的值给tmpNode
         var tmpNode = nodes[key]
+        //若key有值则为修改覆盖key原来的值，若key的值为nil则为插入新的值
         if nil == tmpNode {
             if currentSize >= cacheSize {
                 removeLast()
@@ -51,7 +54,7 @@ class LURCache {
         move2Head(node: tmpNode!)
         nodes[key] = tmpNode
     }
- /*
+ 
     func remove(key : String) -> CacheNode?{
         let tmpNode = nodes[key]
         if let node = tmpNode {
@@ -73,7 +76,7 @@ class LURCache {
         }
         return tmpNode
     }
- */
+ 
     //清空缓存
     func clear(){
         firstNode = nil
@@ -94,34 +97,56 @@ class LURCache {
         }
     }
     
-    //真正建立联系的是node[...],firstnode,lastnode辅助
+    //真正建立联系的是node[...],firstnode,lastnode只是辅助
     private func move2Head(node: CacheNode!){
+        
         if let n = node {
+            //等价于===”表示两个类类型（class type）的常量或者变量引用同一个类实例
+            //判断插入或修改的node是否为第一个node，是的话直接返回，关系不变
+            //print(node === firstNode)
             if node === firstNode{
                 return
             }
             
+            //第一次false
+            // 把n抽出来然后放到第一个
+            print(n.prev != nil)
             if n.prev != nil {
                 n.prev?.next = n.next
             }
             
+            // 把n抽出来然后放到第一个
+            //第一次false
+            print(n.next != nil)
             if n.next != nil{
                 n.next?.prev = n.prev
             }
             
+            
+            //等价于===”表示两个类类型（class type）的常量或者变量引用同一个类实例
+            //判断插入或修改的node是否为最后一个node，为最后一个的话把n的前一个变为最后一个
+            // print(lastNode === node)
             if lastNode === node{
-                lastNode  = n.prev
+                lastNode  = n.prev //把n的前一个变为最后一个
             }
             
+            
+            
+            
+           
+            //firstNode不为空则把n放firstnode前
+            //第一次false只有第一次的时候不执行，每次把n放到firstnode前面
             if firstNode != nil {
                 n.next = firstNode
                 firstNode?.prev = n
             }
             
-            firstNode = node
-            
+            //第一次从这里执行
+            //第一个node
+            firstNode = node//为了下次给别人看不影响结构，让别人知道fisrtNode是多少
             n.prev = nil
             
+            //第一次true只有第一次的时候执行
             if lastNode == nil{
                 lastNode  = firstNode
             }
@@ -134,14 +159,16 @@ class LURCache {
 }
 
 var test = LURCache(cacheSize: 4)
+
 test.put(key: "a", anyO: "1")
 test.put(key: "2", anyO: "2")
 test.put(key: "3", anyO: "3")
 test.put(key: "4", anyO: "4")
 test.put(key: "5", anyO: "5")
-print(test.get(key: "1")!)
-print(test.get(key: "2")!)
-print(test.get(key: "3")!)
-print(test.get(key: "4")!)
-print(test.get(key: "5")!)
+test.put(key: "3", anyO: "6")
+//print(test.get(key: "1")!)
+//print(test.get(key: "2")!)
+//print(test.get(key: "3")!)
+//print(test.get(key: "4")!)
+//print(test.get(key: "5")!)
 
