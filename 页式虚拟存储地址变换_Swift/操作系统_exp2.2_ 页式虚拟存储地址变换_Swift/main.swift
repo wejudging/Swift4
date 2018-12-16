@@ -142,7 +142,7 @@ print("输入页表的信息，创建页表（若页号为－1，则结束输入
 repeat{
     print("输入页号:")
     lnumber =  Int(readLine()!) ?? 0
-    print("输入磁盘块号:")
+    print("输入块号:")
     dnumber =  Int(readLine()!) ?? 0
     page[i].lnumber=lnumber
     page[i].flag=0
