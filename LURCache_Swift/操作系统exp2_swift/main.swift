@@ -111,14 +111,14 @@ class LURCache {
             
             //第一次false
             // 把n抽出来然后放到第一个
-            print(n.prev != nil)
+           // print(n.prev != nil)
             if n.prev != nil {
                 n.prev?.next = n.next
             }
             
             // 把n抽出来然后放到第一个
             //第一次false
-            print(n.next != nil)
+            //print(n.next != nil)
             if n.next != nil{
                 n.next?.prev = n.prev
             }
@@ -167,9 +167,10 @@ test.put(key: "3", anyO: "3")
 test.put(key: "4", anyO: "4")
 test.put(key: "5", anyO: "5")
 test.put(key: "3", anyO: "6")
-//print(test.get(key: "1")!)
-//print(test.get(key: "2")!)
-//print(test.get(key: "3")!)
-//print(test.get(key: "4")!)
-//print(test.get(key: "5")!)
+
+print(test.get(key: "1")!)
+print(test.get(key: "2")!)
+print(test.get(key: "3")!)
+print(test.get(key: "4")!)
+print(test.get(key: "5")!)
 

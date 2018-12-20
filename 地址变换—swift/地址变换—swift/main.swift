@@ -19,7 +19,7 @@ struct Block {
     var end:UnsafeMutablePointer<Int>?
   }
 //定义内存盘块的堆栈
-var PageBlock:Block = Block.init(start: UnsafeMutablePointer<Int>.allocate(capacity: 4*8),end: UnsafeMutablePointer<Int>.allocate(capacity: 4*8))
+var PageBlock:Block = Block.init(start: UnsafeMutablePointer<Int>.allocate(capacity: 1024),end: UnsafeMutablePointer<Int>.allocate(capacity: 1024))
 
 struct Page
 {   /*页号*/
@@ -42,7 +42,7 @@ func Show()  {
     
     PageBlock.end=PageBlock.start
     for _ in 0..<page_length{
-         print("页号:\(page_length)")
+        // print("页号:\(page_length)")
         print((PageBlock.end?.pointee)!)
         PageBlock.end=PageBlock.end!+1
     }
@@ -92,7 +92,7 @@ func Switch(laddress:Int) -> Int {
 print("输入页表的信息，创建页表（若页号为－1，则结束输入)")
 PageBlock.end = PageBlock.start
 repeat{
-    // print("输入页号:")
+    //print("输入页号:")
     //lnumber =  Int(readLine()!) ?? page_length
     print("输入块号:")
     pnumber =  Int(readLine()!) ?? page_length
